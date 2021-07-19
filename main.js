@@ -1,6 +1,8 @@
 
 /*created by prashant shukla */
-
+rightWristX ="";
+rightWristY ="";
+GameStatus = "";
 var paddle2 =10,paddle1=10;
 
 var paddle1X = 10,paddle1Height = 110;
@@ -37,10 +39,31 @@ function modelLoaded()
     console.log('PoseNet Is Initialized');
 }
 
+function gotPoses(results)
+{
+if(results.length > 0)
+{
+  console.log(results);
+  rightWristX = results[0].pose.rightWrist.x;
+  rightWristY = results[0].pose.rightWrist.y;
+   }
+ }
+
+function startGame()
+{
+  GameStatus = "start";
+  document.getElementById("status").innerHTML = "Game Is Loading";
+}
+
 function draw()
 {
  image(video, 0, 0, 700, 600);
  background(0);
+
+ fill("red");
+ stroke("red");
+ circle(rightWristX, rightWristY, 30);
+
  fill("black");
  stroke("black");
  rect(680,0,20,700);
