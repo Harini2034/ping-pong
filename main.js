@@ -57,6 +57,8 @@ function startGame()
 
 function draw()
 {
+  if (GameStatus == start)
+  {
  image(video, 0, 0, 700, 600);
  background(0);
 
@@ -99,6 +101,7 @@ function draw()
    
    //function move call which in very important
     move();
+  }
 }
 
 
